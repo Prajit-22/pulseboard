@@ -1,0 +1,13 @@
+import React from 'react';
+import { render,screen,waitFor,fireEvent,cleanup } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { it,expect,vi,afterEach,beforeEach } from 'vitest';
+import Dashboard from '../src/components/Dashboard';
+import { makeStore } from '../src/lib/store';
+import { demoItems } from '../src/lib/fixtures';
+beforeEach(()=>{localStorage.clear();vi.stubGlobal('React',React);vi.stubGlobal('fetch',vi.fn().mockResolvedValue({ok:true,json:async()=>({items:demoItems(),notices:[],modes:{news:'demo',movies:'demo',social:'mock'}})}));HTMLDialogElement.prototype.showModal=function(){this.setAttribute('open','');};HTMLDialogElement.prototype.close=function(){this.removeAttribute('open');};});
+afterEach(()=>{cleanup();vi.unstubAllGlobals();});
+it('renders fetched content and saves a favorite',async()=>{render(<Provider store={makeStore()}><Dashboard/></Provider>);await screen.findByText('Small models, big possibilities');fireEvent.click(screen.getByRole('button',{name:'Save Small models, big possibilities'}));fireEvent.click(screen.getByRole('button',{name:/Favorites/}));expect(screen.getAllByTestId('content-card')).toHaveLength(1);});
+it('renders the empty response',async()=>{vi.stubGlobal('fetch',vi.fn().mockResolvedValue({ok:true,json:async()=>({items:[],notices:[],modes:{news:'live',movies:'live',social:'mock'}})}));render(<Provider store={makeStore()}><Dashboard/></Provider>);await screen.findByText('No matches yet');});
+it('shows an error and retry affordance',async()=>{vi.stubGlobal('fetch',vi.fn().mockRejectedValue(new Error('offline')));render(<Provider store={makeStore()}><Dashboard/></Provider>);await screen.findByRole('alert');expect(screen.getByRole('button',{name:'Try again'})).toBeVisible();});
+it('opens settings and protects last interest',async()=>{const store=makeStore();render(<Provider store={store}><Dashboard/></Provider>);await screen.findByText('Small models, big possibilities');fireEvent.click(screen.getByRole('button',{name:'Open settings'}));fireEvent.click(screen.getByRole('checkbox',{name:'science'}));fireEvent.click(screen.getByRole('checkbox',{name:'entertainment'}));fireEvent.click(screen.getByRole('checkbox',{name:'technology'}));await waitFor(()=>expect(store.getState().dashboard.preferences.categories).toEqual(['technology']));});
