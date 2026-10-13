@@ -1,5 +1,7 @@
 # Pulseboard
 
+**Live demo:** https://pulseboard-phi-blush.vercel.app/
+
 A personalized content dashboard built with Next.js, React, TypeScript and Redux Toolkit. News, movie recommendations and mock social posts share one responsive feed. The app works immediately without credentials, with clearly labeled fictional samples. Add server-side keys to connect NewsAPI and TMDB.
 
 ## Run on Windows (PowerShell)
