@@ -3,7 +3,7 @@
 Start the app, hide `.env.local`, and record the browser plus your explanation.
 
 1. Introduce Pulseboard and name the stack: Next.js, React, TypeScript, Redux Toolkit.
-2. Explain the source badges honestly. With no keys, say "This is labeled demo data; the server-side adapters support NewsAPI and TMDB." With working keys, show live badges and one real source link.
+2. Explain the source badges honestly. Say "Technology news uses Hacker News; community posts use public Mastodon hashtags. Movies use TMDB when configured. Other news categories need Guardian access or stay labeled samples." Show Source transparency and each real source link. The pill only says Live providers when every source is live. Mixed sources is expected before Guardian setup. Explain that NewsAPI is retained but not enabled on the free production plan.
 3. Open settings, change interests and name, close it and reload. Explain LocalStorage persistence.
 4. Search "cosmos" in demo mode or a returned title in live mode. Explain the 350ms debounce and aborting stale requests.
 5. Save a card, visit Favorites, reload, then return to My feed.
@@ -14,3 +14,5 @@ Start the app, hide `.env.local`, and record the browser plus your explanation.
 10. Show `npm test`, `npm run build`, and `npm run test:e2e` output from your own machine if available.
 
 Be ready to explain why there is no login (optional bonus), how each interest maps to movie genres, and why sample cards do not have fake source links.
+
+Public posts are not verified reporting. Search over HN/Mastodon is limited to fetched results, not global search. Compare like-for-like scores only: HN points, Mastodon reactions, TMDB popularity and sample editorial scores have different meanings. Sample source illustrations are not real article photographs.
