@@ -84,7 +84,7 @@ npm start
 
 ## Deploy
 
-Use a Node-capable Next.js host (for example import this repo into Vercel) with framework preset Next.js. Set server-only environment variables in the host's secret settings if your provider plans allow it. Deploying without keys shows the labeled demo. GitHub Pages does not run the required server API route. No hosted public deployment is included yet; the local run is fully supported.
+Use a Node-capable Next.js host (for example import this repo into Vercel) with framework preset Next.js. Set server-only environment variables in the host's secret settings if your provider plans allow it. Deploying without keys shows the labeled demo. GitHub Pages does not run the required server API route. The public demo is hosted on Vercel: https://pulseboard-phi-blush.vercel.app/. Provider modes are shown in Source transparency; news and social remain labeled samples unless an eligible news provider is configured. To use live movies, add the server-only `TMDB_API_KEY` in Vercel and redeploy.
 
 ## Limitations and honest submission notes
 
@@ -99,3 +99,7 @@ Use a Node-capable Next.js host (for example import this repo into Vercel) with 
 TMDB attribution: This product uses the TMDB API but is not endorsed or certified by TMDB. Movie data and images belong to their respective owners.
 
 See [demo walkthrough](docs/demo.md) for a recording outline and [design notes](docs/design.md) for implementation decisions.
+
+## Provider credits
+
+The About & credits section includes the approved TMDB logo and the required attribution notice. The logo in `public/brand/tmdb.svg` is the unmodified blue short SVG from [TMDB's official brand assets](https://www.themoviedb.org/about/logos-attribution). It links to TMDB and is smaller than the Pulseboard mark. See the [API FAQ](https://developer.themoviedb.org/docs/faq) and [API terms](https://www.themoviedb.org/api-terms-of-use?language=). Free API use is for non-commercial projects with attribution; commercial use requires a separate agreement.
